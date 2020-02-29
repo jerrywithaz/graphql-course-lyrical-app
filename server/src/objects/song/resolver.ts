@@ -8,14 +8,15 @@ import {
     Arg
 } from 'type-graphql';
 import { LyricDocument } from '../lyric/model';
-import { SongType, AddLyricReturnType, AddLyricOutput } from './types';
+import { LyricType } from './../lyric/types';
+import { SongType, AddLyricToSongReturnType, AddLyricOutput } from './types';
 import { 
     GetSongArgs, 
     DeleteSongArgs
 } from './args';
-import { getLyrics, addSong, getSong, getSongs, addLyric, deleteSong } from './apis';
+import { getLyrics, addSong, getSong, getSongs, addLyricToSong, deleteSong } from './apis';
 import { SongDocument } from './model';
-import { AddLyricInput, AddSongInput } from './inputs';
+import { AddLyricToSongInput, AddSongInput } from './inputs';
 
 /**
  * The Resolver for the `Song` Object Type.
@@ -48,13 +49,6 @@ class SongResolver {
      ******************* Mutations *******************
      */
 
-    @Mutation(() => AddLyricOutput)
-    async addLyric(
-        @Arg("data") data: AddLyricInput
-    ): Promise<AddLyricReturnType> {
-        return addLyric(data);
-    }
-
     @Mutation(() => SongType)
     async addSong(
         @Arg("data") data: AddSongInput
@@ -67,6 +61,13 @@ class SongResolver {
         @Args() { id }: DeleteSongArgs
     ): Promise<SongDocument | null> {
         return deleteSong(id);
+    }  
+
+    @Mutation(() => AddLyricOutput)
+    async addLyricToSong(
+        @Arg("data") data: AddLyricToSongInput
+    ): Promise<AddLyricToSongReturnType> {
+        return addLyricToSong(data);
     }
 
     /**
@@ -74,7 +75,7 @@ class SongResolver {
      */
 
     // Get the Songs Lyrics
-    @FieldResolver()
+    @FieldResolver(() => [LyricType])
     async lyrics(
         @Root() song: SongDocument,
     ): Promise<LyricDocument[]> {

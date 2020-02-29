@@ -13,8 +13,8 @@ export class AddSongInput implements Partial<SongType> {
 
 }
 
-@InputType({ description: "New Lyric Data." })
-export class AddLyricInput implements Partial<LyricType> {
+@InputType({ description: "Add Lyric to Song Data." })
+export class AddLyricToSongInput implements Partial<LyricType> {
 
     @Field(() => String) 
     songId: SongType["id"];

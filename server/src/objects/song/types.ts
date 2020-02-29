@@ -30,7 +30,7 @@ export class AddLyricOutput {
 
 }
 
-export type AddLyricReturnType = {
+export type AddLyricToSongReturnType = {
     lyric: LyricDocument | null;
     song: SongDocument | null;
 };
