@@ -1,11 +1,11 @@
 import React from 'react';
-import SongListContainer from '../../containers/SongListContainer';
+import SongList from '../SongList';
 
 const SongsPage = () => {
 
     return (
         <div>
-            <SongListContainer/>
+            <SongList/>
         </div>
     );
 
