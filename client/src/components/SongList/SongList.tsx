@@ -2,7 +2,9 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_SONGS } from '../../graphql/objects/song/queries';
 
-const Songs = () => {
+import * as Styled from './style';
+
+const SongList = () => {
 
     const { loading, error, data } = useQuery(GET_SONGS);
 
@@ -14,11 +16,11 @@ const Songs = () => {
     }
 
     return (
-        <>
+        <Styled.SongList>
             {data.getSongs.map((song: any) => (<div key={song.id}>{song.title}</div>))}
-        </>
+        </Styled.SongList>
     );
 
 }  
 
-export default Songs;
+export default SongList;

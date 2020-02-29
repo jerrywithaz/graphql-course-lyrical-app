@@ -7,7 +7,7 @@ import { buildSchema } from 'type-graphql';
 async function schema(): Promise<GraphQLSchema> {
     return await buildSchema({
         resolvers: [`${__dirname}/objects/**/resolver.ts`],
-        emitSchemaFile: `${__dirname}/schema.gql`
+        emitSchemaFile: `${__dirname}/__generated__/schema.gql`
     });
 }
     

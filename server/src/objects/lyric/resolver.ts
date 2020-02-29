@@ -32,7 +32,7 @@ class LyricResolver {
     /**
      * Returns a Lyric.
      */
-    @Query(() => [LyricType], {nullable: true})
+    @Query(() => [LyricType], {nullable: true, name: "getLyrics" })
     async getLyrics(
         @Args() { songId }: GetLyricsArgs
     ): Promise<LyricDocument[]> {
@@ -42,7 +42,7 @@ class LyricResolver {
     /**
      * Returns a Lyric.
      */
-    @Query(() => LyricType, {nullable: true})
+    @Query(() => LyricType, {nullable: true, name: "getLyric"})
     async getLyric(
         @Args() { id }: GetLyricArgs
     ): Promise<LyricDocument | null> {
@@ -56,7 +56,7 @@ class LyricResolver {
      /**
       * Increases a Lyric's likes by 1.
       */
-    @Mutation(() => LyricType)
+    @Mutation(() => LyricType, { name: "like" })
     async like(
         @Args() { id }: LikeLyricArgs
     ): Promise<LyricDocument | null> {
@@ -71,7 +71,7 @@ class LyricResolver {
      * Get Lyric's Song.
      * @param lyric The Root Lyric
      */
-    @FieldResolver(() => SongType)
+    @FieldResolver(() => SongType, { name: "song" })
     async song(
         @Root() lyric: LyricDocument
     ): Promise<SongDocument | null> {

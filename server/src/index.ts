@@ -23,7 +23,7 @@ async function bootstrap(): Promise<void> {
     });
     
     server.listen(port, () => {
-        console.log(`listening on port ${port}`);
+        console.log(`GraphQL listening on port ${port}`);
     });
 
 }

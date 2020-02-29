@@ -32,13 +32,13 @@ class SongResolver {
      */
 
     // Get Collection of Songs
-    @Query(() => [SongType])
+    @Query(() => [SongType], { name: "getSongs" })
     async getSongs(): Promise<SongDocument[]> {
         return getSongs();
     }
 
     // Get a Song
-    @Query(() => SongType, {nullable: true})
+    @Query(() => SongType,  {nullable: true, "name": "getSong" })
     async getSong(
         @Args() { id }: GetSongArgs
     ): Promise<SongDocument | null> {
@@ -49,21 +49,21 @@ class SongResolver {
      ******************* Mutations *******************
      */
 
-    @Mutation(() => SongType)
+    @Mutation(() => SongType, { name: "addSong" })
     async addSong(
         @Arg("data") data: AddSongInput
     ): Promise<SongDocument | null> {
         return addSong(data);
     }
 
-    @Mutation(() => SongType)
+    @Mutation(() => SongType, { name: "deleteSong" })
     async deleteSong(
         @Args() { id }: DeleteSongArgs
     ): Promise<SongDocument | null> {
         return deleteSong(id);
     }  
 
-    @Mutation(() => AddLyricOutput)
+    @Mutation(() => AddLyricOutput, { name: "addLyricToSong" })
     async addLyricToSong(
         @Arg("data") data: AddLyricToSongInput
     ): Promise<AddLyricToSongReturnType> {
@@ -75,7 +75,7 @@ class SongResolver {
      */
 
     // Get the Songs Lyrics
-    @FieldResolver(() => [LyricType])
+    @FieldResolver(() => [LyricType], { name: "lyrics" })
     async lyrics(
         @Root() song: SongDocument,
     ): Promise<LyricDocument[]> {
