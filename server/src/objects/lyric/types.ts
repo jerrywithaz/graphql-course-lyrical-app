@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 import { ObjectType, Field, ID, Int, InputType } from 'type-graphql';
-import { SongType } from '../song';
+import { SongType } from '../song/types';
 
 @ObjectType({description: "The Lyric Object Type."})
 @InputType("LyricInput")

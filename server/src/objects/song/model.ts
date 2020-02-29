@@ -1,7 +1,6 @@
-import { SongType, AddLyricToSongReturnType } from './types';
 import { Document, Model, Schema, SchemaDefinition, model } from 'mongoose';
-import { LyricModel } from '../lyric';
-import { LyricName, LyricDocument } from '../lyric/model';
+import { SongType, AddLyricToSongReturnType } from './types';
+import LyricModel, { LyricName, LyricDocument } from '../lyric/model';
 
 /**
  * The Song Document Interface.

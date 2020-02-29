@@ -6,14 +6,14 @@ import {
     Root,
     Mutation
 } from 'type-graphql';
-import { SongType } from '../song';
+import { SongType } from '../song/types';
 import { SongDocument } from '../song/model';
+import { getSong, getLyrics } from '../song/apis';
 import { LyricType } from './types';
 import { 
     GetLyricArgs, LikeLyricArgs, GetLyricsArgs 
 } from './args';
 import { getLyric, like } from './apis';
-import { getSong, getLyrics } from '../song/apis';
 import { LyricDocument } from './model';
 
 /**

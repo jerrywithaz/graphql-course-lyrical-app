@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 import { ObjectType, Field, ID, InputType } from 'type-graphql';
-import { LyricType } from '../lyric';
+import { LyricType } from '../lyric/types';
 import { LyricDocument } from '../lyric/model';
 import { SongDocument } from './model';
 

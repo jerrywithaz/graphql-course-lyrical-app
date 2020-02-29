@@ -1,6 +1,6 @@
 import { Document, Model, Schema, model, SchemaDefinition } from 'mongoose';
+import { SongType } from '../song/types';
 import { LyricType } from './types';
-import { SongType } from '../song';
 
 /**
  * The Lyric Document Interface and Lyric Methods.

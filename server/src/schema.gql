@@ -40,17 +40,17 @@ type LyricType {
 }
 
 type Mutation {
+  like(id: ID!): LyricType!
   addSong(data: AddSongInput!): SongType!
   deleteSong(id: String!): SongType!
   addLyricToSong(data: AddLyricToSongInput!): AddLyricOutput!
-  like(id: ID!): LyricType!
 }
 
 type Query {
-  getSongs: [SongType!]!
-  getSong(id: ID!): SongType
   getLyrics(songId: ID!): [LyricType!]
   getLyric(id: ID!): LyricType
+  getSongs: [SongType!]!
+  getSong(id: ID!): SongType
 }
 
 input SongInput {

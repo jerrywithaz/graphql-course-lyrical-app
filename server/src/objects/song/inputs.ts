@@ -1,5 +1,5 @@
 import { InputType, Field, Int } from "type-graphql";
-import { LyricType } from '../lyric';
+import { LyricType } from '../lyric/types';
 import { SongType } from "./types";
 
 @InputType({ description: "New Song Data." })

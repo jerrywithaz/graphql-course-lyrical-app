@@ -1,6 +1,6 @@
 import SongModel, { SongDocument } from './model';
 import { SongType, AddLyricToSongReturnType } from './types';
-import { LyricType } from '../lyric';
+import { LyricType } from '../lyric/types';
 import { LyricDocument } from '../lyric/model';
 import { AddSongInput, AddLyricToSongInput } from './inputs';
 

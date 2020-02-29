@@ -1,7 +1,5 @@
 import { GraphQLSchema } from 'graphql';
 import { buildSchema } from 'type-graphql';
-// import { SongResolver } from './objects/song';
-// import { LyricResolver } from './objects/lyric';
 
 /**
  * Builds the GraphQL Schema.
