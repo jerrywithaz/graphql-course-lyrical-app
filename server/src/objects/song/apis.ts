@@ -1,7 +1,7 @@
-import SongModel, { SongDocument } from './model';
-import { SongType, AddLyricToSongReturnType } from './types';
 import { LyricType } from '../lyric/types';
 import { LyricDocument } from '../lyric/model';
+import SongModel, { SongDocument } from './model';
+import { SongType, AddLyricToSongReturnType } from './types';
 import { AddSongInput, AddLyricToSongInput } from './inputs';
 
 export async function addSong(
@@ -17,7 +17,7 @@ export async function deleteSong(
 }
 
 export async function addLyricToSong(
-    { songId, content }: AddLyricToSongInput
+    { songId, content}: AddLyricToSongInput
 ): Promise<AddLyricToSongReturnType> {
     return SongModel.addLyric(songId, content);
 }

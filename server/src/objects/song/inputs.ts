@@ -22,7 +22,4 @@ export class AddLyricToSongInput implements Partial<LyricType> {
     @Field() 
     content: string;
 
-    @Field(() => Int, { defaultValue: 0 }) 
-    likes?: number;
-    
 }

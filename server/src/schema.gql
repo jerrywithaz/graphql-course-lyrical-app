@@ -13,7 +13,6 @@ type AddLyricOutput {
 input AddLyricToSongInput {
   songId: String!
   content: String!
-  likes: Int = 0
 }
 
 """New Song Data."""

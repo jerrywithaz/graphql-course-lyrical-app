@@ -1,6 +1,7 @@
+import { LyricType } from './../lyric/types';
 import { Document, Model, Schema, SchemaDefinition, model } from 'mongoose';
-import { SongType, AddLyricToSongReturnType } from './types';
 import LyricModel, { LyricName, LyricDocument } from '../lyric/model';
+import { SongType, AddLyricToSongReturnType } from './types';
 
 /**
  * The Song Document Interface.
@@ -16,7 +17,7 @@ export interface SongDocument extends Document {
 export interface SongModel extends Model<SongDocument> {
     addLyric: (
         songId: SongType["id"], 
-        content: string
+        content: LyricType["content"]
     ) => Promise<AddLyricToSongReturnType>;
     findLyrics: (
         id: SongType["id"]
@@ -53,7 +54,7 @@ const SongSchema: Schema<SongDocument> = new Schema(definition);
 SongSchema.statics.addLyric = async function addLyric(
     this: SongModel,
     songId: SongType["id"], 
-    content: string
+    content: LyricType["content"]
 ): Promise<AddLyricToSongReturnType> {
 
     const song = await this.findById(songId);

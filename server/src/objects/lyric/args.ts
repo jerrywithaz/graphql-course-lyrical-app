@@ -1,6 +1,6 @@
 import { ArgsType, Field, ID, Int } from 'type-graphql';
 import { LyricType } from './types';
-import { SongType } from '../song';
+import { SongType } from '../song/types';
 
 @ArgsType()
 export class AddLyricArgs {
