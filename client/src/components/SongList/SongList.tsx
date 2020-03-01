@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+    Link
+  } from "react-router-dom";
 import { useGetSongsQuery } from '../../graphql/objects/song/hooks';
 import { GetSong } from '../../graphql/objects/song/types';
 
@@ -24,7 +27,7 @@ const SongList = () => {
         <Styled.SongList>
             {data.getSongs.map((song: GetSong) => (
                 <Styled.Song key={song.id}>
-                    {song.title}
+                    <Link to={`/songs/${song.id}`}>{song.title}</Link>
                 </Styled.Song>
             ))}
         </Styled.SongList>

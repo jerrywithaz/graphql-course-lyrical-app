@@ -24,7 +24,7 @@ export const GET_SONGS_AND_LYRICS = gql`
 `;
 
 export const GET_SONG = gql`
-    query GetSong($id: String!) {
+    query GetSong($id: ID!) {
         getSong(id: $id) {
             id,
             title
@@ -33,7 +33,7 @@ export const GET_SONG = gql`
 `;
 
 export const GET_SONG_AND_LYRICS = gql`
-    query GetSongAndLyrics($id: String!) {
+    query GetSongAndLyrics($id: ID!) {
         getSong(id: $id) {
             id,
             title,

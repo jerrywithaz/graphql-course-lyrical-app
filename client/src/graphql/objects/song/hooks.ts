@@ -1,11 +1,13 @@
 import { useQuery } from "@apollo/react-hooks";
-import { GET_SONGS, GET_SONGS_AND_LYRICS, GET_SONG } from "./queries";
+import { GET_SONGS, GET_SONGS_AND_LYRICS, GET_SONG, GET_SONG_AND_LYRICS } from "./queries";
 import { 
     GetSongsData, 
     GetSongsAndLyricsData, 
     GetSongsQueryHookOptions, 
     GetSongsAndLyricsQueryHookOptions, 
-    GetSongQueryHookOptions
+    GetSongQueryHookOptions,
+    GetSongData,
+    GetSongAndLyricsData
 } from "./types";
 
 export function useGetSongsQuery(
@@ -23,5 +25,11 @@ export function useGetSongsAndLyricsQuery(
 export function useGetSongQuery(
     options?: GetSongQueryHookOptions
 ) {
-    return useQuery<GetSongsData>(GET_SONG, options || {});
+    return useQuery<GetSongData>(GET_SONG, options || {});
+}
+
+export function useGetSongAndLyricsQuery(
+    options?: GetSongQueryHookOptions
+) {
+    return useQuery<GetSongAndLyricsData>(GET_SONG_AND_LYRICS, options || {});
 }

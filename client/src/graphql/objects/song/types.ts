@@ -19,6 +19,14 @@ export type GetSongsAndLyricsData = {
 
 export type GetSongsAndLyricsQueryHookOptions = QueryHookOptions;
 
+export type GetSongData = {
+    getSong: GetSong
+};
+
 export type GetSongQueryHookOptions = QueryHookOptions<any, {
     id: string
 }>;
+
+export type GetSongAndLyricsData = {
+    getSong: GetSongAndLyrics
+};

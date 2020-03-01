@@ -1,16 +1,25 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
+import {
+  HashRouter,
+  Route,
+} from "react-router-dom";
 import { GraphQLClient } from '../../graphql';
-import SongsPage from '../../components/SongsPage';
+import GlobalStyles from '../../components/GlobalStyles';
 
-function App() {
+import App from '../../components/App';
+
+function AppContainer() {
 
   return (
     <ApolloProvider client={GraphQLClient}>
-      <SongsPage/>
+      <HashRouter>
+        <GlobalStyles/>
+        <Route path="/" component={App}/>
+      </HashRouter>
     </ApolloProvider>
     
   );
 }
 
-export default App;
+export default AppContainer;
