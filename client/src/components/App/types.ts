@@ -1,3 +1,3 @@
 import { RouteConfigComponentProps } from './../SwitchWithSubRoutes/types';
 
-export type SongPageProps = RouteConfigComponentProps<{id: string}>;
+export type AppProps = RouteConfigComponentProps;

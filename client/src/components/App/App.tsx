@@ -1,19 +1,11 @@
 import React from 'react';
-import {
-    Switch,
-    Route
-  } from "react-router-dom";
-import SongsPage from '../SongsPage';
-import SongPage from '../SongPage';
+import SwitchWithSubRoutes from '../SwitchWithSubRoutes';
+import { AppProps } from './types';
 
-const App = () => {
+const App = ({ routes }: AppProps) => {
     return (
         <div>
-            <Switch>
-                <Route path="/" exact component={SongsPage}/>
-                <Route path="/songs" exact component={SongsPage}/>
-                <Route path="/songs/:id" component={SongPage}/>
-            </Switch>
+            <SwitchWithSubRoutes routes={routes}/>
         </div>
     );
 }

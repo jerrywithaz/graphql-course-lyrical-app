@@ -1,13 +1,12 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import {
-  HashRouter,
-  Route,
+  HashRouter
 } from "react-router-dom";
 import { GraphQLClient } from '../../graphql';
 import GlobalStyles from '../../components/GlobalStyles';
-
-import App from '../../components/App';
+import SwitchWithSubRoutes from '../../components/SwitchWithSubRoutes';
+import routes from './routes';
 
 function AppContainer() {
 
@@ -15,7 +14,7 @@ function AppContainer() {
     <ApolloProvider client={GraphQLClient}>
       <HashRouter>
         <GlobalStyles/>
-        <Route path="/" component={App}/>
+          <SwitchWithSubRoutes routes={routes}/>
       </HashRouter>
     </ApolloProvider>
     
