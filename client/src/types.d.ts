@@ -21,7 +21,7 @@ export type AddLyricToSongInput = {
 
 export type AddSongInput = {
   title: Scalars['String'],
-  lyrics: Array<LyricInput>,
+  lyrics?: Maybe<Array<LyricInput>>,
 };
 
 export type LyricInput = {
@@ -61,7 +61,7 @@ export type MutationAddSongArgs = {
 
 
 export type MutationDeleteSongArgs = {
-  id: Scalars['String']
+  id: Scalars['ID']
 };
 
 

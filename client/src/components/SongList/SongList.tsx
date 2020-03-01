@@ -2,10 +2,10 @@ import React from 'react';
 import {
     Link
   } from "react-router-dom";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import { useGetSongsQuery } from '../../graphql/objects/song/hooks';
-import { GetSong } from '../../graphql/objects/song/types';
-
-import * as Styled from './style';
+import { SimpleSong } from '../../graphql/objects/song/types';
 
 const SongList = () => {
 
@@ -24,13 +24,13 @@ const SongList = () => {
     }
 
     return (
-        <Styled.SongList>
-            {data.getSongs.map((song: GetSong) => (
-                <Styled.Song key={song.id}>
-                    <Link to={`/songs/${song.id}`}>{song.title}</Link>
-                </Styled.Song>
+        <List>
+            {data.getSongs.map((song: SimpleSong) => (
+                <ListItem key={song.id} component={Link} to={`/songs/${song.id}`}>
+                    {song.title}
+                </ListItem>
             ))}
-        </Styled.SongList>
+        </List>
     );
 
 }  

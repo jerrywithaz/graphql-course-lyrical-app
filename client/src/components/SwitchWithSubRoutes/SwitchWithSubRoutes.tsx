@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 import RouteWithSubRoutes from './components/RouteWithSubRoutes';
 import { SwitchWithSubRoutesProps } from './types';
 
-const Routes = ({ routes = [] }: SwitchWithSubRoutesProps) => {
+const SwitchWithSubRoutes = ({ routes = [] }: SwitchWithSubRoutesProps) => {
     return (
         <Switch>
             {routes.map((route, i) => (
@@ -13,4 +13,4 @@ const Routes = ({ routes = [] }: SwitchWithSubRoutesProps) => {
     );
 };
 
-export default Routes;
+export default SwitchWithSubRoutes;

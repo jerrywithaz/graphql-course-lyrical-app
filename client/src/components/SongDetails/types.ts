@@ -1,3 +1,4 @@
 export type SongDetailsProps = {
-    id: string
+    id: string,
+    onSongDeleted: (id: string) => void
 };

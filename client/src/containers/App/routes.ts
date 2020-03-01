@@ -1,7 +1,8 @@
 import App from "../../components/App";
-import SongsPage from "../../components/SongsPage";
-import SongPage from "../../components/SongPage";
+import SongsPage from "../../pages/SongsPage";
+import SongPage from "../../pages/SongPage";
 import { RouteConfig } from "../../components/SwitchWithSubRoutes/types";
+import AddSongPage from "../../pages/AddSongPage";
 
 const Routes: RouteConfig[] = [
   {
@@ -12,6 +13,16 @@ const Routes: RouteConfig[] = [
         path: "/",
         exact: true,
         component: SongsPage
+      },
+      {
+        path: "/songs",
+        exact: true,
+        component: SongsPage
+      },
+      {
+        path: "/songs/add",
+        exact: true,
+        component: AddSongPage
       },
       {
         path: "/songs/:id",

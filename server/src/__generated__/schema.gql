@@ -18,7 +18,7 @@ input AddLyricToSongInput {
 """New Song Data."""
 input AddSongInput {
   title: String!
-  lyrics: [LyricInput!]!
+  lyrics: [LyricInput!] = []
 }
 
 input LyricInput {
@@ -41,7 +41,7 @@ type LyricType {
 type Mutation {
   like(id: ID!): LyricType!
   addSong(data: AddSongInput!): SongType!
-  deleteSong(id: String!): SongType!
+  deleteSong(id: ID!): SongType!
   addLyricToSong(data: AddLyricToSongInput!): AddLyricOutput!
 }
 

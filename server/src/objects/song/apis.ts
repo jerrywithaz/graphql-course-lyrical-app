@@ -12,8 +12,14 @@ export async function addSong(
 
 export async function deleteSong(
     id: SongType["id"]
-): Promise<SongDocument> {
-    return SongModel.findById(id).remove();
+): Promise<SongDocument | null> {
+
+    const query = SongModel.findById(id);
+    const song = await query.exec();
+
+    await query.remove();
+
+    return song;
 }
 
 export async function addLyricToSong(

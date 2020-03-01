@@ -5,7 +5,7 @@ import { SongType } from './types';
 @ArgsType()
 export class DeleteSongArgs {
 
-    @Field(() => String) 
+    @Field(() => ID) 
     id: SongType["id"];
     
 }

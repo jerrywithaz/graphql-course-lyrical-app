@@ -5,7 +5,9 @@ import { AppProps } from './types';
 const App = ({ routes }: AppProps) => {
     return (
         <div>
-            <SwitchWithSubRoutes routes={routes}/>
+            <div>
+                <SwitchWithSubRoutes routes={routes}/>
+            </div>
         </div>
     );
 }

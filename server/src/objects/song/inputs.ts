@@ -8,7 +8,7 @@ export class AddSongInput implements Partial<SongType> {
     @Field() 
     title: string;
     
-    @Field(() => [LyricType])
+    @Field(() => [LyricType], { nullable: true, defaultValue: [] })
     lyrics?: LyricType[];
 
 }
