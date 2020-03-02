@@ -1,5 +1,6 @@
-import { ADD_NEW_SONG, DELETE_SONG } from './mutations';
 import { useQuery, useMutation } from "@apollo/react-hooks";
+import { MutationAddLyricToSongArgs } from './../../../types.d';
+import { ADD_NEW_SONG, DELETE_SONG, ADD_LYRIC_TO_SONG } from './mutations';
 import { GET_SONGS, GET_SONGS_AND_LYRICS, GET_SONG, GET_SONG_AND_LYRICS } from "./queries";
 import { 
     GetSongsData, 
@@ -12,7 +13,9 @@ import {
     AddNewSongData,
     AddNewSongMutationHookOptions,
     DeleteSongMutationHookOptions,
-    DeleteSongData
+    DeleteSongData,
+    AddLyricToSongData,
+    AddLyricToSongMutationHookOptions
 } from "./types";
 import { MutationAddSongArgs, MutationDeleteSongArgs } from '../../../types';
 
@@ -56,4 +59,10 @@ export function useDeleteSongMutation(
         ...options,
         refetchQueries: [{ query: GET_SONGS }, { query: GET_SONGS_AND_LYRICS }]
     });
+}
+
+export function useAddLyricToSongMutation(
+    options?: AddLyricToSongMutationHookOptions
+) {
+    return useMutation<AddLyricToSongData, MutationAddLyricToSongArgs>(ADD_LYRIC_TO_SONG, options);
 }

@@ -17,6 +17,6 @@ export const SongLyrics = styled.div`
     width: 50%;
 `;
 
-export const AddSongLyric = styled.div`
+export const AddLyricToSong = styled.div`
     width: 50%;
 `;

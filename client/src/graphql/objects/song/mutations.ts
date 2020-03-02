@@ -17,3 +17,21 @@ export const DELETE_SONG = gql`
         }
     }
 `;
+
+export const ADD_LYRIC_TO_SONG = gql`
+    mutation AddLyricToSong($data: AddLyricToSongInput!) {
+        addLyricToSong(data: $data) {
+            lyric {
+                id,
+                content,
+                likes
+            },
+            song {
+                id,
+                lyrics {
+                    id
+                }
+            }
+        }
+    }
+`;

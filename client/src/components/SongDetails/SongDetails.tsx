@@ -1,6 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import { useGetSongAndLyricsQuery, useDeleteSongMutation } from '../../graphql/objects/song/hooks';
+import { useLikeLyricMutation } from '../../graphql/objects/lyrics/hooks';
+import AddLyricToSong from '../AddLyricToSong';
 import { SongDetailsProps } from './types';
 
 import * as Styled from './styles';
@@ -13,16 +19,34 @@ const SongDetails = ({ id, onSongDeleted }: SongDetailsProps) => {
         }
     });
 
-    const [ deleteSong ] = useDeleteSongMutation({
-        onCompleted: (data) => onSongDeleted(data.deleteSong.id)
-    });
+    const [ deleteSong ] = useDeleteSongMutation();
+    const [ likeLyric ] = useLikeLyricMutation();
 
     function onDeleteButtonClick() {
         deleteSong({
             variables: {
                 id
             }
-        })
+        }).then((result) => {
+            if (result.data) {
+                onSongDeleted(result.data.deleteSong.id)
+            }
+        });
+    }
+
+    function onLikeIconClicked(id: string, likes: number) {
+        likeLyric({
+            variables: {
+                id
+            },
+            optimisticResponse: {
+                like: {
+                    __typename: "LyricType",
+                    id: id,
+                    likes: likes + 1
+                }
+            }
+        });
     }
 
     if (loading) {
@@ -40,22 +64,34 @@ const SongDetails = ({ id, onSongDeleted }: SongDetailsProps) => {
     return (
         <Styled.SongDetails>
             <Styled.SongHeader>
-                <h2>{data.getSong.title}</h2>
-                <Button color="secondary" onClick={onDeleteButtonClick}>Delete Song</Button>
+                <h1>{data.getSong.title}</h1>
+                <Button 
+                    color="secondary" 
+                    onClick={onDeleteButtonClick} 
+                    variant="contained">
+                        Delete Song
+                </Button>
             </Styled.SongHeader>
             <Styled.StyledContent>
                 <Styled.SongLyrics>
-                    {data.getSong.lyrics.map((lyric) => {
-                        return (
-                            <div key={lyric.id}>
-                                {lyric.content}
-                            </div>
-                        );
-                    })}
+                    <List>
+                        {data.getSong.lyrics.map((lyric) => {
+                            return (
+                                <ListItem key={lyric.id}>
+                                    {lyric.content}
+                                    <ListItemIcon 
+                                        onClick={() => onLikeIconClicked(lyric.id, lyric.likes)}>
+                                            <ThumbUpIcon/>
+                                    </ListItemIcon>
+                                    {lyric.likes}
+                                </ListItem>
+                            );
+                        })}
+                    </List>
                 </Styled.SongLyrics>
-                <Styled.AddSongLyric>
-                    
-                </Styled.AddSongLyric>
+                <Styled.AddLyricToSong>
+                    <AddLyricToSong songId={data.getSong.id}/>
+                </Styled.AddLyricToSong>
             </Styled.StyledContent>
         </Styled.SongDetails>
     );
