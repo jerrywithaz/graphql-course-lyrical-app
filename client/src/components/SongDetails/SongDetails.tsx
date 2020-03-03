@@ -1,11 +1,10 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import { useGetSongAndLyricsQuery, useDeleteSongMutation } from '../../graphql/objects/song/hooks';
+import { updateSongsListAfterDeleteSong } from '../../graphql/objects/song/updaters';
 import { useLikeLyricMutation } from '../../graphql/objects/lyrics/hooks';
+import { SimpleLyric } from '../../graphql/objects/lyrics/types';
+import SimpleLyricList from '../SimpleLyricList';
 import AddLyricToSong from '../AddLyricToSong';
 import { SongDetailsProps } from './types';
 
@@ -26,7 +25,8 @@ const SongDetails = ({ id, onSongDeleted }: SongDetailsProps) => {
         deleteSong({
             variables: {
                 id
-            }
+            },
+            update: updateSongsListAfterDeleteSong
         }).then((result) => {
             if (result.data) {
                 onSongDeleted(result.data.deleteSong.id)
@@ -34,7 +34,7 @@ const SongDetails = ({ id, onSongDeleted }: SongDetailsProps) => {
         });
     }
 
-    function onLikeIconClicked(id: string, likes: number) {
+    function onLyricLike({ id, likes }: SimpleLyric) {
         likeLyric({
             variables: {
                 id
@@ -74,23 +74,13 @@ const SongDetails = ({ id, onSongDeleted }: SongDetailsProps) => {
             </Styled.SongHeader>
             <Styled.StyledContent>
                 <Styled.SongLyrics>
-                    <List>
-                        {data.getSong.lyrics.map((lyric) => {
-                            return (
-                                <ListItem key={lyric.id}>
-                                    {lyric.content}
-                                    <ListItemIcon 
-                                        onClick={() => onLikeIconClicked(lyric.id, lyric.likes)}>
-                                            <ThumbUpIcon/>
-                                    </ListItemIcon>
-                                    {lyric.likes}
-                                </ListItem>
-                            );
-                        })}
-                    </List>
+                    <SimpleLyricList 
+                        lyrics={data.getSong.lyrics} 
+                        onLyricLike={onLyricLike}/>
                 </Styled.SongLyrics>
                 <Styled.AddLyricToSong>
-                    <AddLyricToSong songId={data.getSong.id}/>
+                    <AddLyricToSong 
+                        songId={data.getSong.id}/>
                 </Styled.AddLyricToSong>
             </Styled.StyledContent>
         </Styled.SongDetails>

@@ -46,23 +46,17 @@ export function useGetSongAndLyricsQuery(
 export function useAddNewSongMutation(
     options?: AddNewSongMutationHookOptions
 ) {
-    return useMutation<AddNewSongData, MutationAddSongArgs>(ADD_NEW_SONG, {
-        ...options,
-        refetchQueries: [{ query: GET_SONGS }, { query: GET_SONGS_AND_LYRICS }]
-    });
+    return useMutation<AddNewSongData, MutationAddSongArgs>(ADD_NEW_SONG, options || {});
 }
 
 export function useDeleteSongMutation(
     options?: DeleteSongMutationHookOptions
 ) {
-    return useMutation<DeleteSongData, MutationDeleteSongArgs>(DELETE_SONG, {
-        ...options,
-        refetchQueries: [{ query: GET_SONGS }, { query: GET_SONGS_AND_LYRICS }]
-    });
+    return useMutation<DeleteSongData, MutationDeleteSongArgs>(DELETE_SONG, options || {});
 }
 
 export function useAddLyricToSongMutation(
     options?: AddLyricToSongMutationHookOptions
 ) {
-    return useMutation<AddLyricToSongData, MutationAddLyricToSongArgs>(ADD_LYRIC_TO_SONG, options);
+    return useMutation<AddLyricToSongData, MutationAddLyricToSongArgs>(ADD_LYRIC_TO_SONG, options || {});
 }

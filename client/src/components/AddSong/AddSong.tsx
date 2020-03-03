@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useAddNewSongMutation } from '../../graphql/objects/song/hooks';
+import { updateSongsListAfterAddNewSong } from '../../graphql/objects/song/updaters';
 import { AddNewSongData } from '../../graphql/objects/song/types';
 import { AddSongProps } from './types';
 
 const AddSong = ({ onSongAdded }: AddSongProps) => {
 
     const [ songTitle, setSongTitle ] = useState<string>("");
-    
 
     function onNewSongAdded(data: AddNewSongData) {
         onSongAdded(data.addSong.id);
     }
 
-    function onSubmit(e: React.FormEvent<Element>) {
+    function onFormSubmit(e: React.FormEvent<Element>) {
 
         e.preventDefault();
 
@@ -28,13 +28,14 @@ const AddSong = ({ onSongAdded }: AddSongProps) => {
     }
 
     const [ addNewSong ] = useAddNewSongMutation({
-        onCompleted: onNewSongAdded
+        onCompleted: onNewSongAdded,
+        update: updateSongsListAfterAddNewSong
     });
 
     return (
         <div>
             <h3>Add a New Song</h3>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onFormSubmit}>
                 <div>
                     <label htmlFor="songTitle">Song Title: </label>
                 </div>

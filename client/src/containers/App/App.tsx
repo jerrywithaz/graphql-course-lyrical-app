@@ -9,15 +9,13 @@ import SwitchWithSubRoutes from '../../components/SwitchWithSubRoutes';
 import routes from './routes';
 
 function AppContainer() {
-
   return (
     <ApolloProvider client={GraphQLClient}>
-      <HashRouter>
-        <GlobalStyles/>
-          <SwitchWithSubRoutes routes={routes}/>
-      </HashRouter>
+        <HashRouter>
+            <GlobalStyles/>
+            <SwitchWithSubRoutes routes={routes}/>
+        </HashRouter>
     </ApolloProvider>
-    
   );
 }
 
