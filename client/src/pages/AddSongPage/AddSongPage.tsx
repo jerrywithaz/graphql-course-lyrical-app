@@ -7,7 +7,7 @@ const AddSongPage = ({ history }: AddSongPageProps) => {
 
     function onSongAdded(id: string) {
         history.push(`/songs/${id}`);
-    }
+    } 
 
     return (
         <div>

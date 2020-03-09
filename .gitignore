@@ -1,7 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# VS Code Files
+/.vscode
+
+# Client
+/client/node_modules
 /client/.gitignore
+
+# Server
+/server/node_modules
 /server/.gitignore
 
+# RSA Keys
 id_rsa_personal
 id_rsa_personal.pub
